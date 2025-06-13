@@ -10,8 +10,7 @@ import UIKit
 class HeroHeaderUIView: UIView {
     
     
-    
-    private let downnloadButton : UIButton = {
+    private let downloadButton: UIButton = {
         let button = UIButton()
         button.setTitle("Download", for: .normal)
         button.layer.borderColor = UIColor.white.cgColor
@@ -21,8 +20,8 @@ class HeroHeaderUIView: UIView {
         return button
     }()
     
-    
-    private let playButton : UIButton = {
+    private let playButton: UIButton = {
+       
         let button = UIButton()
         button.setTitle("Play", for: .normal)
         button.layer.borderColor = UIColor.white.cgColor
@@ -39,53 +38,62 @@ class HeroHeaderUIView: UIView {
         imageView.image = UIImage(named: "heroImage")
         return imageView
     }()
+
     
-    private func addGradien() {
+    private func addGradient() {
         let gradientLayer = CAGradientLayer()
         gradientLayer.colors = [
             UIColor.clear.cgColor,
-            UIColor.systemBackground.cgColor]
+            UIColor.systemBackground.cgColor
+        ]
         gradientLayer.frame = bounds
         layer.addSublayer(gradientLayer)
-        
     }
-    
-    
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         addSubview(heroImageView)
-        addGradien()
+        addGradient()
         addSubview(playButton)
-        addSubview(downnloadButton)
+        addSubview(downloadButton)
         applyConstraints()
     }
     
     private func applyConstraints() {
+        
         let playButtonConstraints = [
             playButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 70),
             playButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -50),
-            playButton.widthAnchor.constraint(equalToConstant: 120),
-         ]
+            playButton.widthAnchor.constraint(equalToConstant: 120)
+        ]
         
         let downloadButtonConstraints = [
-            downnloadButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -70),
-            downnloadButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -50),
-            downnloadButton.widthAnchor.constraint(equalToConstant: 120),
-            
-         ]
+            downloadButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -70),
+            downloadButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -50),
+            downloadButton.widthAnchor.constraint(equalToConstant: 120)
+        ]
         
         NSLayoutConstraint.activate(playButtonConstraints)
         NSLayoutConstraint.activate(downloadButtonConstraints)
     }
     
     
+    
+    public func configure(with model: TitleViewModel) {
+        guard let url = URL(string: "https://image.tmdb.org/t/p/w500/\(model.posterURL)") else {
+            return
+        }
+        
+        heroImageView.sd_setImage(with: url, completed: nil)
+    }
+    
     override func layoutSubviews() {
         super.layoutSubviews()
         heroImageView.frame = bounds
-        
     }
-        
+    
     required init?(coder: NSCoder) {
         fatalError()
     }
+    
 }
