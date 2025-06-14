@@ -1,0 +1,70 @@
+# Xcode
+*.xcworkspace
+*.xcuserstate
+*.xccheckout
+*.xcodeproj/*
+!*.xcodeproj/project.pbxproj
+!*.xcodeproj/xcshareddata/
+*.xcodeproj/xcuserdata/
+
+# Derived data
+DerivedData/
+build/
+
+# User-specific settings
+*.xcuserdata/
+*.moved-aside
+*.swp
+*.lock
+*.env
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Xcode automatic backup files
+*~.nib
+*.mode1v3
+*.mode2v3
+*.perspectivev3
+*.xcsettings
+
+# Swift Package Manager
+/.build/
+/Packages/
+/Package.resolved
+
+# CocoaPods
+Pods/
+/Podfile.lock
+
+# Carthage
+Carthage/
+
+# Fastlane
+fastlane/report.xml
+fastlane/Preview.html
+fastlane/screenshots
+fastlane/test_output
+
+# Firebase crashlytics
+*.dSYM.zip
+*.dSYM
+
+# Temporary files
+*.tmp
+*.temp
+*.log
+
+# Previews
+*.preview-thumbnails
+
+# Other
+*.orig
+.idea/
+.vscode/
+*.code-workspace
+.env.*
+
+
